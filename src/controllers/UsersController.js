@@ -2,17 +2,6 @@ import User from "../models/User";
 import bcrypt from 'bcryptjs'
 
 class UsersController {
-
-    async index(req, res) {
-        try {
-          const users = await User.find();
-    
-          return res.json(users);
-        } catch (err) {
-          console.error(err);
-          return res.status(500).json({ error: "Internal Server Error" });
-        }
-    }
   
     async create(req, res) {
         const { name, email, password, confirmpassword } = req.body;

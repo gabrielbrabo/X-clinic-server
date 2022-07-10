@@ -1,19 +1,23 @@
 import mongoose from "mongoose";
 
-const patients = (
+const patients = new mongoose.Schema(
     {
-        user_id: {
-            type: mongoose.Types.ObjectId,
-            ref: 'user',
-        },
         name: {
             type: String,
-            requires: true,
+            required: true,
         },
         email: {
             type: String,
-            requires: true,
             unique: true
+        },
+        status: {
+            type: String,
+            enum: ["active", "inactive"],
+        },
+        user: {
+            type: mongoose.Types.ObjectId, 
+            ref: 'user',
+            required: true,
         },
     }
 );

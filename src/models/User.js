@@ -4,11 +4,11 @@ const userschema = new mongoose.Schema(
     {
         name: {
             type: String,
-            requires: true,
+            required: true,
         },
         email: {
             type: String,
-            requires: true,
+            required: true,
             index: {
                 unique: true
             },
@@ -16,8 +16,18 @@ const userschema = new mongoose.Schema(
         },
         password: {
             type: String,
-            requires: true,
+            required: true,
         },
+        status: {
+            type: String,
+            enum: ["active", "inactive"],
+        },
+        patients: [
+            {
+                type: mongoose.Types.ObjectId,
+                ref: 'patients'
+            }
+        ],
     },
     {
         timestamps: true
