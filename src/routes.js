@@ -15,6 +15,7 @@ routes.post('/users', UsersController.create)
 routes.put('/users/:id', UsersController.update)
 routes.delete('/users/:id', UsersController.destroy)
 
-routes.post('/patients', PatientsController.create)
+routes.post('/cadastro/patients', PatientsController.create)
+routes.get('/patients', PatientsController.index)
 
 export default routes

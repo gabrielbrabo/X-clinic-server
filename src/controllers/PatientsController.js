@@ -28,6 +28,24 @@ class PatientsController {
             })
         }
     } 
+
+    async index(req, res) {
+        try {
+            const patients = await User.findById({
+                _id: req.userId
+            }).populate('patients')
+
+            res.status(200).json({
+                data: patients.patients,
+                message: 'Sucess'
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'there was an error on server side!'
+            })
+        }
+    }
 }
 
 export default new PatientsController();
