@@ -35,8 +35,8 @@ class PatientsController {
                 _id: req.userId
             }).populate('patients')
 
-            res.status(200).json({
-                data: patients.patients,
+            res.json({
+                data: patients,
                 message: 'Sucess'
             })
         } catch (err) {
