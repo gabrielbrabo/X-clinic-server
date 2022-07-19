@@ -4,8 +4,11 @@ import User from '../models/User'
 class PatientsController {
 
     async create(req, res) {
+        const {name, email} = req.body
+
         const newPatient = new Patients({
-            ...req.body,
+            name,
+            email,
             user: req.userId
         })
 
@@ -22,7 +25,6 @@ class PatientsController {
                 msg: 'Paciente cadastrado com sucesso.'
             })
         } catch (err){
-            console.log(err)
             res.status(500).json({
                 msg: 'Error ao cadastra o paciente.'
             })
