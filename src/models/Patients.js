@@ -8,16 +8,52 @@ const patients = new mongoose.Schema(
         },
         email: {
             type: String,
-            required: true
+            required: false,
         },
         status: {
             type: String,
             enum: ["active", "inactive"],
         },
-        user: {
+        IDclinic: {
             type: mongoose.Types.ObjectId, 
             ref: 'user',
             required: true,
+        },
+        brithData: {
+            type: String,
+            required: true
+        },
+        sexo: {
+            type: String,
+            required: false,
+        },
+        diagnosis: {
+            type: String,
+            required: true
+        },
+        cpf: {
+            type: String,
+            required: true
+        },
+        rg: {
+            type: String,
+            required: true
+        },
+        cell: {
+            type: String,
+            required: true
+        },
+        address: {
+            type: String,
+            required: true,
+        },
+        number: {
+            type: String,
+            required: true,
+        },
+        district: {
+            type: String,
+            required: false,
         },
     }
 );

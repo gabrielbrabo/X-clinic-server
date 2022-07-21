@@ -4,12 +4,34 @@ import User from '../models/User'
 class PatientsController {
 
     async create(req, res) {
-        const {name, email} = req.body
+        const {
+            name, 
+            email, 
+            brithData, 
+            sexo, 
+            diagnosis, 
+            cpf, 
+            rg,
+            cell,
+            address,
+            number,
+            district,
+
+        } = req.body
 
         const newPatient = new Patients({
             name,
             email,
-            user: req.userId
+            IDclinic: req.userId,
+            brithData, 
+            sexo, 
+            diagnosis, 
+            cpf, 
+            rg,
+            cell,
+            address,
+            number,
+            district,
         })
 
         try {
