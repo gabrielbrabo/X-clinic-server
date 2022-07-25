@@ -4,12 +4,12 @@ import authConfig from '../config/auth'
 import bcrypt from 'bcryptjs'
 
 class SessionController {
-    async create(req, res) {
+    async create(req, res, next) {
         const { email, password } = req.body;
 
         // validations
         if (!email) {
-            return res.status(422).json({ msg: "O email é obrigatório!" });
+            return res.status(421).json({ msg: "O email é obrigatório!" });
         }
 
         if (!password) {

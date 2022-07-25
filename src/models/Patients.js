@@ -9,6 +9,7 @@ const patients = new mongoose.Schema(
         email: {
             type: String,
             required: false,
+            unique: true,
         },
         status: {
             type: String,
@@ -27,17 +28,15 @@ const patients = new mongoose.Schema(
             type: String,
             required: false,
         },
-        diagnosis: {
-            type: String,
-            required: true
-        },
         cpf: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
         },
         rg: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
         },
         cell: {
             type: String,
@@ -45,11 +44,11 @@ const patients = new mongoose.Schema(
         },
         address: {
             type: String,
-            required: true,
+            required: false,
         },
         number: {
             type: String,
-            required: true,
+            required: false,
         },
         district: {
             type: String,

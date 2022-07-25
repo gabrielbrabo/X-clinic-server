@@ -9,7 +9,6 @@ class PatientsController {
             email, 
             brithData, 
             sexo, 
-            diagnosis, 
             cpf, 
             rg,
             cell,
@@ -19,13 +18,83 @@ class PatientsController {
 
         } = req.body
 
+        if (!name) {
+            return res.status(421).json({ msg: "O nome é obrigatório!" });
+        }
+
+        if (email) {
+            if(email.search("@")==-1) {
+                return res.status(421).json({ msg: "Email invalido!" });
+            }
+        }
+
+        if (!cell) {
+            return res.status(421).json({ msg: "O numero de celular é obrigatório!" });
+        }
+
+        if (isNaN(cell)) {
+            return res.status(421).json({ msg: "O numero de celular so pode conter numeros!" });
+        }
+
+        if (!brithData) {
+            return res.status(421).json({ msg: "A data de nascimento é obrigatório!" });
+        }
+
+        if (!cpf) {
+            return res.status(421).json({ msg: "O CPF é obrigatório!" });
+        }
+        if (cpf.length != 11) {
+            return res.status(421).json({ msg: "O CPF é invalido!" });
+        }
+
+        if (isNaN(cpf)) {
+            return res.status(421).json({ msg: "O CPF so pode conter numeros!" });
+        }
+
+        if (!rg) {
+            return res.status(421).json({ msg: "O RG é obrigatório!" });
+        }
+
+        if (isNaN(rg)) {
+            return res.status(421).json({ msg: "O RG so pode conter numeros!" });
+        }
+
+        if (!address) {
+            return res.status(421).json({ msg: "O endereço é obrigatório!" });
+        }
+
+        if (!number) {
+            return res.status(421).json({ msg: "O numero é obrigatório!" });
+        }
+
+        if (isNaN(number)) {
+            return res.status(421).json({ msg: "O numero so pode conter numeros!" });
+        }
+
+        const patient = await Patients.findOne({email: email})
+         
+        if(patient) {
+            return res.status(404).json({ msg: "Este email ja esta cadastrado em outro paciente!" })
+        } 
+
+        const cpfPatient = await Patients.findOne({cpf: cpf})
+
+        if(cpfPatient) {
+            return res.status(404).json({ msg: "Este CPF ja esta cadastrado em outro paciente!" })
+        }
+
+        const rgPatient = await Patients.findOne({rg: rg})
+
+        if(rgPatient) {
+            return res.status(404).json({ msg: "Este RG ja esta cadastrado em outro paciente!" })
+        }
+
         const newPatient = new Patients({
             name,
             email,
             IDclinic: req.userId,
             brithData, 
-            sexo, 
-            diagnosis, 
+            sexo,
             cpf, 
             rg,
             cell,
