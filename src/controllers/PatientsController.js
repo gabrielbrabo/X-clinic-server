@@ -90,7 +90,7 @@ class PatientsController {
         }
 
         const newPatient = new Patients({
-            name,
+            name: name.toUpperCase(),
             email,
             IDclinic: req.userId,
             brithData, 
